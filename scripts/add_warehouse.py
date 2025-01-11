@@ -14,14 +14,14 @@ def create_warehouse(account, user, password, warehouse_name, role):
         # Create a new warehouse
         cursor = conn.cursor()
         create_query = f"""
-        CREATE WAREHOUSE IF NOT EXISTS {warehouse_name}
+        CREATE WAREHOUSE IF NOT EXISTS TEST_WH
         WITH WAREHOUSE_SIZE = 'XSMALL'
         WAREHOUSE_TYPE = 'STANDARD'
         AUTO_SUSPEND = 60
         AUTO_RESUME = TRUE;
         """
         cursor.execute(create_query)
-        print(f"Warehouse {warehouse_name} created successfully.")
+        print(f"Warehouse TEST_WH created successfully.")
         
     except Exception as e:
         print(f"Error creating warehouse: {e}")
