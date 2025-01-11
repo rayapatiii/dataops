@@ -26,7 +26,7 @@ jobs:
 
     - name: Run Python script to create warehouse
       env:
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_ACCOUNT: "kknhbdt-gw53127.snowflakecomputing.com"
         SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
