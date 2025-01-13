@@ -28,14 +28,22 @@ def create_warehouse_db_schema_table(account, user, password, warehouse_name, ro
         cursor.execute(create_database_query)
         print("Database FOOD_REVIEWS_DB created successfully.")
 
+        # Use the created database
+        cursor.execute("USE DATABASE FOOD_REVIEWS_DB;")
+        print("Switched to database FOOD_REVIEWS_DB.")
+
         # Create a new schema
-        create_schema_query = "CREATE SCHEMA IF NOT EXISTS FOOD_REVIEWS_DB.REVIEWS_SCHEMA;"
+        create_schema_query = "CREATE SCHEMA IF NOT EXISTS REVIEWS_SCHEMA;"
         cursor.execute(create_schema_query)
         print("Schema REVIEWS_SCHEMA created successfully.")
 
+        # Use the created schema
+        cursor.execute("USE SCHEMA REVIEWS_SCHEMA;")
+        print("Switched to schema REVIEWS_SCHEMA.")
+
         # Create a new table
         create_table_query = """
-        CREATE TABLE IF NOT EXISTS FOOD_REVIEWS_DB.REVIEWS_SCHEMA.AMAZON_FOOD_REVIEWS (
+        CREATE TABLE IF NOT EXISTS AMAZON_FOOD_REVIEWS (
             REVIEW_ID STRING,
             PRODUCT_ID STRING,
             REVIEW_TEXT STRING,
