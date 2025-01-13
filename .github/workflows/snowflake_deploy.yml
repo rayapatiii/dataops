@@ -26,7 +26,7 @@ jobs:
 
     - name: Run Python script to create warehouse, db, schema, table and load data from S3
       env:
-        SNOWFLAKE_ACCOUNT: "your_snowflake_account"
+        SNOWFLAKE_ACCOUNT: "kknhbdt-gw53127"
         SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
