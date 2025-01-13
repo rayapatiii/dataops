@@ -1,0 +1,46 @@
+name: Create Snowflake Warehouse, DB, Schema, Table, and Load Data from S3
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  create-warehouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install snowflake-connector-python
+
+    - name: Run Python script to create warehouse, db, schema, table and load data from S3
+      env:
+        SNOWFLAKE_ACCOUNT: "your_snowflake_account"
+        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        STAGE_NAME: "MY_S3_STAGE"
+        S3_BUCKET: "amazon-food-reviews"  # Your S3 bucket name
+        FILE_NAME: "Reviews.csv"  # The file name in your S3 bucket
+      run: |
+        python scripts/create_warehouse_db_schema_table_load_data.py \
+          $SNOWFLAKE_ACCOUNT \
+          $SNOWFLAKE_USER \
+          $SNOWFLAKE_PASSWORD \
+          $SNOWFLAKE_WAREHOUSE \
+          $SNOWFLAKE_ROLE \
+          $STAGE_NAME \
+          $S3_BUCKET \
+          $FILE_NAME
